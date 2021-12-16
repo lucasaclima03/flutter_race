@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race/modules/login/login_page.dart';
+import 'package:flutter_race/modules/login/pages/create_account/create_account.dart';
 import 'package:flutter_race/modules/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -8,10 +9,11 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
         title: "Flutter Race #1",
         theme: ThemeData(primarySwatch: Colors.green),
-        initialRoute: "/login",
+        initialRoute: "/login/create-account",
         routes: {
           "/splash": (context) => const SplashPage(),
-          "/login": (context) => const LoginPage()
+          "/login": (context) => const LoginPage(),
+          "/login/create-account": (context) => const CreateAccountPage()
         });
   }
 }
