@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race/shared/theme/app_text.dart';
 import 'package:flutter_race/shared/theme/app_theme.dart';
+import 'package:flutter_race/shared/widgets/button/button.dart';
+import 'package:flutter_race/shared/widgets/input_text/input_text.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -10,72 +12,28 @@ class LoginPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppTheme.colors.background,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            children: [
-              Image.asset("assets/images/logo.png", 
-              width: 200,
-            ),
-            InputText(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/logo.png", width: 200),
+            InputText(label: "E-mail", hint: "Digite seu email"),
+            SizedBox(height: 18),
+            InputText(label: "Senha", hint: "Digite sua senha"),
             SizedBox(
-              height: 18,
+              height: 14,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [              
-                Text("Senha").label,
-                SizedBox(
-                  height: 12,
-                ),
-                TextFormField(
-                  style: AppTheme.textStyles.input,
-                  decoration: InputDecoration(              
-                    hintText: "Digite seu email",
-                    hintStyle: AppTheme.textStyles.hint,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppTheme.colors.border)
-                    )
-                  ),
-                ),
-                
-              ],
+            Button(
+              label: "Entrar",
             ),
-            
-      ],
-    ),
-        ));
-  }
-}
-
-class InputText extends StatelessWidget {
-  const InputText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [              
-        Text("Email").label,
-        SizedBox(
-          height: 12,
+            SizedBox(
+              height: 22,
+            ),
+            Button(label: "Criar conta", type: ButtonType.outline),
+          ],
         ),
-        TextFormField(
-          style: AppTheme.textStyles.input,
-          decoration: InputDecoration(              
-            hintText: "Digite seu email",
-            hintStyle: AppTheme.textStyles.hint,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: AppTheme.colors.border)
-            )
-          ),
-        ),
-        
-      ],
+      ),
     );
   }
 }
