@@ -9,7 +9,7 @@ class AppWidget extends StatelessWidget {
     return MaterialApp(
         title: "Flutter Race #1",
         theme: ThemeData(primarySwatch: Colors.green),
-        initialRoute: "/login/create-account",
+        initialRoute: "/splash",
         routes: {
           "/splash": (context) => const SplashPage(),
           "/login": (context) => const LoginPage(),

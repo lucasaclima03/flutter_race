@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_race/modules/login/pages/create_account/create_account.dart';
 import 'package:flutter_race/shared/theme/app_text.dart';
 import 'package:flutter_race/shared/theme/app_theme.dart';
 import 'package:flutter_race/shared/widgets/button/button.dart';
@@ -20,22 +21,26 @@ class LoginPage extends StatelessWidget {
             Image.asset("assets/images/logo.png", width: 200),
             InputText(label: "E-mail", hint: "Digite seu email"),
             SizedBox(height: 18),
-            InputText(label: "Senha", hint: "Digite sua senha"),
+            InputText(label: "Senha", obscure: true, hint: "Digite sua senha"),
             SizedBox(
               height: 14,
             ),
             Button(
               label: "Entrar",
-              onTap: (){
+              onTap: () {
                 print("Entrar");
               },
             ),
             SizedBox(
               height: 22,
             ),
-            Button(label: "Criar conta", type: ButtonType.outline, onTap: (){
-              print("Criar conta");
-            },),
+            Button(
+              label: "Criar conta",
+              type: ButtonType.outline,
+              onTap: () {
+                Navigator.pushNamed(context, "/login/create-account");
+              },
+            ),
           ],
         ),
       ),
