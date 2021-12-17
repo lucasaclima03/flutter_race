@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race/modules/login/login_controller.dart';
-import 'package:flutter_race/modules/login/pages/create_account/create_account.dart';
+import 'package:flutter_race/modules/login/pages/create_account/create_account_page.dart';
 import 'package:flutter_race/shared/theme/app_text.dart';
 import 'package:flutter_race/shared/theme/app_theme.dart';
 import 'package:flutter_race/shared/widgets/button/button.dart';

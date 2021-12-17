@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_race/modules/login/login_page.dart';
-import 'package:flutter_race/modules/login/pages/create_account/create_account.dart';
+import 'package:flutter_race/modules/login/pages/create_account/create_account_page.dart';
 import 'package:flutter_race/modules/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
