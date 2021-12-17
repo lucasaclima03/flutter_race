@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_race/shared/utils/app_state.dart';
 
-class LoginController {
+class LoginController extends ChangeNotifier {
+  var state = AppState.empty();
   final formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
