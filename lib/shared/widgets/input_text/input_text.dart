@@ -7,7 +7,7 @@ class InputText extends StatelessWidget {
   final String hint;
   final bool obscure;
   final void Function(String)? onChanged;
-  final String? Function(String?)? validator;
+  final String? Function(String)? validator;
   const InputText({
     required this.label,
     required this.hint,
@@ -20,7 +20,7 @@ class InputText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start, 
       children: [
         Text(label).label,
         SizedBox(
@@ -30,7 +30,11 @@ class InputText extends StatelessWidget {
           obscureText: obscure,
           onChanged: onChanged,
           style: AppTheme.textStyles.input,
-          validator: validator,
+          validator: (value){
+            if(validator != null) {
+              return validator!(value ?? "");
+            }
+          },
           decoration: InputDecoration(
               hintText: hint,
               hintStyle: AppTheme.textStyles.hint,
