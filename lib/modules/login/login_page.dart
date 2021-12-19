@@ -16,6 +16,25 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = LoginController();
+
+  @override
+  void initState() {
+    controller.addListener(() {
+      controller.state.when(
+          success: (value) => print(value),
+          error: (message, _) => print(message),
+          loading: () => print("loading..."),
+          orElse: () {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -30,37 +49,50 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Image.asset("assets/images/logo.png", width: 200),
               InputText(
-                label: "E-mail", 
+                label: "E-mail",
                 hint: "Digite seu email",
-                validator: (value) => isEmail(value)?null : "Digite um e-mail válido" ,
-                onChanged: (value)=> controller.onChange(email: value),              
-                ),
+                validator: (value) =>
+                    isEmail(value) ? null : "Digite um e-mail válido",
+                onChanged: (value) => controller.onChange(email: value),
+              ),
               SizedBox(height: 18),
               InputText(
-                label: "Senha", 
-                obscure: true, 
+                label: "Senha",
+                obscure: true,
                 hint: "Digite sua senha",
-                validator: (value)=> value.length >= 6 ? null : "Digite uma senha com mais de 6 caracteres",
-                onChanged: (value)=> controller.onChange(password: value),
-                ),
+                validator: (value) => value.length >= 6
+                    ? null
+                    : "Digite uma senha com mais de 6 caracteres",
+                onChanged: (value) => controller.onChange(password: value),
+              ),
               SizedBox(
                 height: 14,
               ),
-              Button(
-                label: "Entrar",
-                onTap: () {
-                  controller.login();
-                },
-              ),
-              SizedBox(
-                height: 22,
-              ),
-              Button(
-                label: "Criar conta",
-                type: ButtonType.outline,
-                onTap: () {
-                  Navigator.pushNamed(context, "/login/create-account");
-                },
+              AnimatedBuilder(
+                animation: controller,
+                builder: (_, __) => controller.state.when(
+                  loading: () => CircularProgressIndicator(),
+                  orElse: () => Column(
+                    children: [
+                      Button(
+                        label: "Entrar",
+                        onTap: () {
+                          controller.login();
+                        },
+                      ),
+                      SizedBox(
+                        height: 22,
+                      ),
+                      Button(
+                        label: "Criar conta",
+                        type: ButtonType.outline,
+                        onTap: () {
+                          Navigator.pushNamed(context, "/login/create-account");
+                        },
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
