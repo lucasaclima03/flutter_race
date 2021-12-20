@@ -16,14 +16,19 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = LoginController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     controller.addListener(() {
       controller.state.when(
-          success: (value) => print(value),
-          error: (message, _) => print(message),
-          loading: () => print("loading..."),
+          success: (value) => Navigator.pushNamed(context, "/home"),
+          error: (message, _) => () {
+                scaffoldKey.currentState!.showBottomSheet((context) => BottomSheet(
+                      onClosing: () {},
+                      builder: (context) => Container(child: Text(message)),
+                    ));
+              },          
           orElse: () {});
     });
     super.initState();
@@ -39,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: AppTheme.colors.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40),
